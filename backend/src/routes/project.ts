@@ -62,6 +62,7 @@ router.post("/", middleware, async (req, res) => {
         description: description || "",
         work: work || "Personal Project",
         profileId,
+        createdAt: new Date(),
       },
       include: {
         skills: { include: { skill: true } },
@@ -101,6 +102,7 @@ router.post("/from-github", middleware, async (req, res) => {
         description: `GitHub project: ${ownerName}/${repoName}`,
         work: "Open Source",
         profileId,
+        createdAt: new Date(),
         links: {
           create: [
             {
