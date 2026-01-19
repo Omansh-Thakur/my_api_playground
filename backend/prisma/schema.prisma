@@ -46,7 +46,7 @@ model Project {
   description String
   profileId   String
   work        String?
-  createdAt   DateTime?
+  createdAt   DateTime       @default(now())
   profile     Profile        @relation(fields: [profileId], references: [id])
   links       ProjectLink[]
   skills      ProjectSkill[]
