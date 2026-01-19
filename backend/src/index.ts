@@ -17,7 +17,9 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "https://my-api-playground-sigma.vercel.app",
-  "https://my-api-playground-lzxf.onrender.com"
+  "https://my-api-playground-pf37.vercel.app",
+  "https://my-api-playground-lzxf.onrender.com",
+  "https://my-api-playground-1.onrender.com"
 ];
 
 // CORS configuration
