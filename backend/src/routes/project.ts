@@ -124,20 +124,3 @@ router.post("/from-github", middleware, async (req, res) => {
 });
 
 export default router;
-          ],
-        },
-      },
-      include: {
-        skills: { include: { skill: true } },
-        links: true,
-      },
-    });
-
-    res.json(project);
-  } catch (error) {
-    console.error("Error creating project from GitHub:", error);
-    res.status(500).json({ error: "Failed to create project from GitHub" });
-  }
-});
-
-export default router;
