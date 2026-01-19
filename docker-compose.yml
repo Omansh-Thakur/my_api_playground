@@ -1,0 +1,47 @@
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=123123
+      - DATABASE_URL=file:./dev.db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "https://my-api-playground-lzxf.onrender.com/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./my-professional-hub-main
+      dockerfile: Dockerfile
+    ports:
+      - "8080:5173"
+    environment:
+      - VITE_API_URL=http://backend:3000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5173/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  backend-data:
+    driver: local
