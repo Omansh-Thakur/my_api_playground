@@ -22,19 +22,9 @@ const allowedOrigins = [
   "https://my-api-playground-1.onrender.com"
 ];
 
-// CORS configuration
+// CORS configuration - Allow all origins
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      console.log(`[CORS] Allowed origin: ${origin}`);
-      return callback(null, true);
-    }
-
-    console.warn(`[CORS] Rejected origin: ${origin}`);
-    return callback(null, false);
-  },
+  origin: true,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
