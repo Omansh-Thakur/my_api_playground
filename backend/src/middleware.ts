@@ -41,4 +41,5 @@ export function middleware(
     next();
   } catch (error) {
     console.error("[Auth] Token verification failed:", error);
-    return res.status(401).json({ message: "Invalid or expired token" });
+    return res.status(401).json({ message: "Invalid or expired token" });  }
+}
