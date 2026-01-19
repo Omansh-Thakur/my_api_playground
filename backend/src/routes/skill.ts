@@ -45,12 +45,11 @@ router.get("/top", async (_, res) => {
     });
 
     const result = skills
-      .map((s) => ({
-        skillId: s.skillId,
-        count: s._count,
-        skill: skillDetails.find((sd) => sd.id === s.skillId),
-      }))
-      .filter((s) => s.skill);
+      .map((s) => {
+        const skill = skillDetails.find((sd) => sd.id === s.skillId);
+        return skill ? { ...skill, _count: s._count } : null;
+      })
+      .filter((s) => s !== null);
 
     res.json(result);
   } catch (error) {
